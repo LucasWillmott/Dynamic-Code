@@ -34,7 +34,7 @@ if (debug !== null) {
 	addScript('main', `${prodUrl}/main.js`, true);
 }
   
-  // keyboard shortcut to debug mode
+  // keyboard shortcut to debug mode CTRL + D
   document.addEventListener('keydown', function(event) {
     if (event.ctrlKey && event.key === 'd') {
         event.preventDefault(); // Prevent the default action (e.g., bookmarking the page)
