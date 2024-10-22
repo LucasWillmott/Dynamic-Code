@@ -1,4 +1,4 @@
-import { initializeGsap } from './utils/initialize-gsap'
+import { initializeGsap } from '../utils/initializeGsap'
 const { gsap } = initializeGsap()
 
 export default function slider () {
