@@ -39,3 +39,26 @@ async function checkAndLoadComponents () {
     }
   }
 }
+
+/* // Lenis - Needs to be installed if using
+function LenisSmooth () {
+  if (Array(document.documentElement.classList).includes('w-editor')) return
+
+  window.lenis = new Lenis({
+    lerp: 0.1,
+    wheelMultiplier: 1,
+    infinite: false,
+    gestureOrientation: 'vertical',
+    normalizeWheel: false,
+    smoothTouch: false
+  })
+
+  function raf (time) {
+    window.lenis.raf(time)
+    window.requestAnimationFrame(raf)
+  }
+
+  window.requestAnimationFrame(raf)
+}
+
+LenisSmooth() */
