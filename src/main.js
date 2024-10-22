@@ -6,18 +6,36 @@ document.fonts.ready.then(() => {
   checkAndLoadComponents()
 })
 
-// Array of component attribute names
-const componentNames = ['accordions', 'slider']
+// Automatically get component names from the components folder
+const components = require.context('./components', false, /\.js$/) // Find all .js files in the components folder
 
 // Function to check for elements and dynamically import corresponding modules
 function checkAndLoadComponents () {
-  componentNames.forEach(async (name) => {
-    const selector = `[${name}]` // Create selector based on the attribute name
-    if (document.querySelector(selector)) {
-      const module = await import(`./components/${name}.js`) // Dynamically load the module
-      if (typeof module.default === 'function') {
-        module.default() // Run the default exported function
+  components.keys().forEach(async (fileName) => {
+    const componentName = fileName
+      .replace('./', '') // Remove leading './'
+      .replace('.js', '') // Remove the .js extension
+
+    const selector = `[data-${componentName}]` // Create selector from the component name
+    const element = document.querySelector(selector)
+
+    if (element) {
+      try {
+        // Dynamically import the module
+        const module = await import(`./components/${componentName}.js`)
+
+        // Check if the module has a default export function, and run it
+        if (typeof module.default === 'function') {
+          module.default()
+          console.log(`${componentName} component initialized successfully`)
+        } else {
+          console.warn(`Module ${componentName}.js did not export a default function.`)
+        }
+      } catch (error) {
+        console.error(`Failed to load module for component: ${componentName}`, error)
       }
+    } else {
+      console.log(`No elements found for component: ${componentName}`)
     }
   })
 }
