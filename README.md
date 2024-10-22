@@ -4,7 +4,7 @@
 
 ## Files structure & How to use
 
-Write compponent specific code in the components folder, main.js will dynamically load it in dependant on if there is an element on the page with the name of the js file. eg. slider.js will look for [data-slider], if it exists it will dynamicallly import that code. Just add files to the component folder and you're golden. Use camelCase and data-* so you can use the dataset api (if you want to)
+Write compponent specific code in the components folder, main.js will dynamically load it in dependant on if there is an element on the page with the name of the js file. eg. slider.js will look for [data-slider], if it exists it will dynamicallly import that code. Just add files to the component folder and you're golden.
 
 
 ## How to use with Webflow
